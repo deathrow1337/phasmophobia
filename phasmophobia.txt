@@ -1,0 +1,7 @@
+"phasmophobia"
+{
+	"base"	"base"
+	"title"	"Phasmophobia"
+	"maps"	""
+	"menusystem"	"1"
+}
