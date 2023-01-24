@@ -61,4 +61,4 @@ local function AdminMenu()
 
 end
 
-concommand.Add("adminmenu", AdminMenu)
+concommand.Add("adminmenu", AdminMenu) -- Hello
