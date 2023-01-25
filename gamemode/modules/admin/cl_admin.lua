@@ -61,4 +61,54 @@ local function AdminMenu()
 
 end
 
-concommand.Add("adminmenu", AdminMenu) -- Hello
+concommand.Add("adminmenu", AdminMenu)
+
+local PANEL = {}
+
+function PaintButtons( self, w, h )
+  if(self.Hovered) then
+    self:SetTextColor(Color(255,30,0))
+    draw.RoundedBox( 3, 0, 0, w, h, Color(200, 200, 200) )
+  else
+    self:SetTextColor(Color(255, 255, 255))
+    draw.RoundedBox( 3, 0, 0, w, h, Color(45, 45, 45) )
+  end
+end
+
+function PANEL:Init()
+  self:SetSize( 700, 800 )
+  self:Center()
+  self:MakePopup()
+  self:SetTitle('')
+  self:ShowCloseButton(false)
+  self:SetDraggable(false)
+
+  self.Button = self:Add('DButton')
+  self.Button:SetSize(20,20)
+  self.Button:SetPos(width(680), height(5))
+  self.Button:SetText('X')
+  self.Button:SetTextColor(Color(255, 255, 255))
+  self.Button.Paint = PaintButtons
+  self.Button.DoClick = function()
+    self:Close()
+  end
+
+  self.Panel = self:Add('Panel')
+  self.Panel:SetSize(700,740)
+  self.Panel:SetPos(0,30)
+  self.Panel.Paint = function( s, w, h) 
+    draw.RoundedBox( 10, 0, 0, w, h, Color(40, 40, 40) )
+  end
+end
+
+function PANEL:Paint( w, h )
+  draw.RoundedBox( 0, 0, 0, w, h, Color(0, 0, 0, 0) )
+end
+
+vgui.Register( "AdmTable", PANEL, "DFrame" )
+
+-- pnl = vgui.Create('AdmTable')
+
+concommand.Add("adm", function(ply, cmd, args)
+  pnl = vgui.Create('AdmTable')
+end)
