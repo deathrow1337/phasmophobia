@@ -65,49 +65,88 @@ concommand.Add("adminmenu", AdminMenu)
 
 local PANEL = {}
 
-function PaintButtons( self, w, h )
+function PaintButton( self, w, h )
   if(self.Hovered) then
-    self:SetTextColor(Color(255,30,0))
-    draw.RoundedBox( 3, 0, 0, w, h, Color(200, 200, 200) )
+    draw.RoundedBox( 3, 0, 0, w, h, Color(70, 54, 102, 255) )
   else
-    self:SetTextColor(Color(255, 255, 255))
-    draw.RoundedBox( 3, 0, 0, w, h, Color(45, 45, 45) )
+    draw.RoundedBox( 3, 0, 0, w, h, Color(45, 45, 45, 255) )
   end
 end
 
+function CloseButton( self, w, h )
+  if(self.Hovered) then
+    self:SetTextColor(Color(255,30,0))
+    draw.RoundedBox( 3, 0, 0, w, h, Color(200, 200, 200, 0) )
+  else
+    self:SetTextColor(Color(255, 255, 255))
+    draw.RoundedBox( 3, 0, 0, w, h, Color(45, 45, 45, 0) )
+  end
+end
+
+function PanelPaint( self, w, h )
+  draw.RoundedBoxEx( 10, 0, 0, w, h, Color(30, 30, 30, 200), true, false, true, false )
+end
+
 function PANEL:Init()
-  self:SetSize( 700, 800 )
+  self:SetSize(0,0)
+  local isAnimating = true
+  self:SizeTo(700, 800, 1.5, 0, .1, function()
+    isAnimating = false
+  end)
+  self.Think = function()
+    if isAnimating then
+      self:Center()
+    end
+  end
+
   self:Center()
   self:MakePopup()
   self:SetTitle('')
   self:ShowCloseButton(false)
   self:SetDraggable(false)
+  input.SetCursorPos( ScrW() * 0.51, ScrH() * 0.23 )
 
   self.Button = self:Add('DButton')
-  self.Button:SetSize(20,20)
+  self.Button:SetSize(15,15)
   self.Button:SetPos(width(680), height(5))
   self.Button:SetText('X')
+  self.Button:SetFont('Default')
   self.Button:SetTextColor(Color(255, 255, 255))
-  self.Button.Paint = PaintButtons
+  self.Button.Paint = CloseButton
   self.Button.DoClick = function()
+    local isAnimating = true
+    self:SizeTo(0, 0, 1.5, 0, .1, function()
+        isAnimating = false
+    end)
+    self.Think = function()
+      if isAnimating then
+        self:Center()
+      end
+    end
+    timer.Simple( 0.9, function()
     self:Close()
+    end)
   end
 
-  self.Panel = self:Add('Panel')
-  self.Panel:SetSize(700,740)
-  self.Panel:SetPos(0,30)
-  self.Panel.Paint = function( s, w, h) 
-    draw.RoundedBox( 10, 0, 0, w, h, Color(40, 40, 40) )
-  end
+  self.Panel = self:Add('DPanel')
+  self.Panel:SetPos(0,0)
+  self.Panel:SetSize(200,800)
+  self.Panel.Paint = PanelPaint
+
+  self.scrol = self.Panel:Add('DScrollPanel')
+  self.scrol:Dock(FILL)
+
+  self.DButton = self.scrol:Add('DButton')
+  self.DButton:Dock(TOP)
+  self.DButton:DockMargin( 0, 5, 0, 5 )
+  self.DButton.Paint = PaintButton
 end
 
 function PANEL:Paint( w, h )
-  draw.RoundedBox( 0, 0, 0, w, h, Color(0, 0, 0, 0) )
+  draw.RoundedBox( 10, 0, 0, w, h, Color(50, 50, 50, 255) )
 end
 
 vgui.Register( "AdmTable", PANEL, "DFrame" )
-
--- pnl = vgui.Create('AdmTable')
 
 concommand.Add("adm", function(ply, cmd, args)
   pnl = vgui.Create('AdmTable')
