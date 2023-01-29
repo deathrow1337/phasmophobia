@@ -19,7 +19,6 @@ Phasmophobia.CFG.Lang.en = {
   myling = "Myling",
 }
 
-
 Phasmophobia.CFG.Lang.ru = {
   shade = "Тень",
   demon = "Демон",
@@ -29,6 +28,63 @@ Phasmophobia.CFG.Lang.ru = {
   phantom = "Фантом",
   yurei = "Юрей",
   wraith = "Мираж",
+  jinn = "Джинн",
+  oni = "Они",
+  revenant = "Ревенант",
+  poltergeist = "Полтергейст",
+  spirit = "Дух",
+  hantu = "Ханту",
+  goryo = "Горё",
+  myling = "Мюлинг",
+}
+
+Phasmophobia.CFG.Lang.fr = {
+  shade = "Ombre",
+  demon = "Démon",
+  yokai = "Yokai",
+  mare = "Mare",
+  banshee = "Banshee",
+  phantom = "Fantôme",
+  yurei = "Jurey",
+  wraith = "Mirage",
+  jinn = "Djinn",
+  oni = "Ils",
+  revenant = "Revenant",
+  poltergeist = "Poltergeist",
+  spirit = "Esprit",
+  hantu = "Hantu",
+  goryo = "Montagne",
+  myling = "Mühling",
+}
+
+Phasmophobia.CFG.Lang.dh = {
+  shade = "Der Schatten",
+  demon = "Dämon",
+  yokai = "Yekai",
+  mare = "Mare",
+  banshee = "Banshees",
+  phantom = "Phantom",
+  yurei = "Yurei",
+  wraith = "Fata Morgana",
+  jinn = "Dschinn",
+  oni = "Sie",
+  revenant = "Rhabarber",
+  poltergeist = "Poltergeist",
+  spirit = "Geist",
+  hantu = "Huntu",
+  goryo = "Goryo",
+  myling = "Mühling",
+}
+
+Phasmophobia.CFG.Lang.uk = {
+  shade = "Тінь",
+  demon = "Демон",
+  yokai = "Йокати",
+  mare = "Марё",
+  banshee = "Банши",
+  phantom = "Фантом",
+  yurei = "Юрей",
+  wraith = "Міраж",
   jinn = "Джинн",
   oni = "Они",
   revenant = "Ревенант",
